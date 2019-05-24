@@ -83,7 +83,7 @@ module.exports = merge(common, {
 			verbose: true,
 			dry: false
 		}),
-		new MiniCssExtractPlugin({ //只在生产环境下做CSS的提取可以保证开发环境下的热重载效果
+		new MiniCssExtractPlugin({ //只在生产环境下做CSS的提取可以保证开发环境下的热重载效果，目前CSS分离未起效果，原因暂时不明
 			filename: 'css/[name].[contenthash:8].css',
 			chunkFilename: 'css/[name].[contenthash:8].css'
 		}),
