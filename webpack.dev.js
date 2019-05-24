@@ -2,6 +2,7 @@ const merge = require('webpack-merge')
 const common = require('./webpack.common.js')
 const path = require('path')
 const Webpack = require('webpack')
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = merge(common, {
 	mode: 'development',
@@ -10,6 +11,10 @@ module.exports = merge(common, {
 		hot: true,
 		port: 9000,
 		open: true,
+		quiet: true,
+		overlay: { //编译错误直接展示在页面中
+			errors: true
+		},
 		// openPage: 'mypage/', 用于打开对应的路由公共路径
 		allowedHosts: [ //白名单
 			'//r.51gjj.com',
@@ -29,5 +34,6 @@ module.exports = merge(common, {
 	plugins: [ //热更新插件
 		new Webpack.NamedModulesPlugin(), //下面两个为模块热替换插件
 		new Webpack.HotModuleReplacementPlugin(),
+		new FriendlyErrorsPlugin() //用于清除编译输出的无用信息
 	]
 })
