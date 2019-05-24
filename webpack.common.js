@@ -1,9 +1,9 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-// 基本参数
-const proEnv = process.env.NODE_ENV
+const devMode = process.env.NODE_ENV !== 'production'
 
 function resolve(dir) {
 	return path.join(__dirname, './', dir)
@@ -14,18 +14,12 @@ module.exports = {
 		// "babel-polyfill",
 		path.join(__dirname, './src/main.js')
 	],
-	output: {
-		filename: '[name].js',
-		path: resolve('dist'),
-		publicPath:
-			proEnv === 'production' ? `https://r.51gjj.com/webpublic/myvue/` : '' //生产环境公共路径为CDN基础目录，开发环境为根目录
-	},
 	plugins: [
 		new HtmlWebpackPlugin({ //编译打包公用html模板
 			template: './public/index.html',
 			title: 'webpack-vue'
 		}),
-		new VueLoaderPlugin() //需要使用这个插件用来解析vue文件
+		new VueLoaderPlugin(), //需要使用这个插件用来解析vue文件
 	],
 	resolve: {
 		extensions: ['.js', '.vue', '.json'], //用于在引入这几种类型的文件时不需要加文件后缀名，webpack会自动解析
@@ -40,12 +34,12 @@ module.exports = {
 				test: /\.vue$/,
 				loader: 'vue-loader'
 			},
-			{
+			{ //开发环境下配置CSS的loader
 				test: /\.css$/,
-				// 匹配普通style/style-scoped模块
 				use: [
-					'vue-style-loader',
-					'css-loader'
+					devMode
+					? 'vue-style-loader'
+					: MiniCssExtractPlugin.loader, 'css-loader'
 				]
 			},
 			{
