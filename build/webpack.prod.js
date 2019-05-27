@@ -14,7 +14,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const proEnv = process.env.NODE_ENV !== 'production'
 
 function resolve(dir) {
-	return path.join(__dirname, './', dir)
+	return path.join(__dirname, '../', dir)
 }
 
 module.exports = merge(common, {
@@ -43,7 +43,7 @@ module.exports = merge(common, {
 			maxInitialRequests: 3, //入口文件超过3个模块会做分割
 			automaticNameDelimiter: '~', //文件连接符
 			name: true,
-			cacheGroups: {
+			cacheGroups: { //做缓存-优化方式
 				vendor: {
 					test: /[\\/]node_modules[\\/]/,
 					name: 'vendor',

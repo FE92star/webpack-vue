@@ -7,7 +7,7 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 module.exports = merge(common, {
 	mode: 'development',
 	devServer: {
-		contentBase: path.join(__dirname, 'dist'),
+		contentBase: path.join(__dirname, '../dist'),
 		hot: true,
 		port: 9000,
 		open: true,

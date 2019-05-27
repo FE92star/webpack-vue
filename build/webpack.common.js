@@ -6,17 +6,17 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const devMode = process.env.NODE_ENV !== 'production'
 
 function resolve(dir) {
-	return path.join(__dirname, './', dir)
+	return path.join(__dirname, '../', dir)
 }
 
 module.exports = {
 	entry: [
-		// "babel-polyfill",
-		path.join(__dirname, './src/main.js')
+		path.join(__dirname, '../src/main.js')
 	],
 	plugins: [
 		new HtmlWebpackPlugin({ //编译打包公用html模板
-			template: './public/index.html',
+			// template: '../webpack-vue/public/index.html',
+			template: resolve('./public/index.html'),
 			inject: 'body',
 			hash: true,
 			minify: { //html压缩处理
@@ -36,7 +36,7 @@ module.exports = {
 			vue$: 'vue/dist/vue.esm.js',
 			'@': resolve('src')
 		},
-		modules: [path.resolve(__dirname, 'src'), 'node_modules'] //配置快捷查找模块
+		modules: [resolve('src'), 'node_modules'] //配置快捷查找模块
 	},
 	module: {
 		rules: [
