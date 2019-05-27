@@ -1,7 +1,7 @@
 <template lang="html">
 	<div class="">
 		<p class="hello">{{str}}</p>
-		<img src="./assets/dog.jpg" alt="">
+		<img src="./assets/dog.jpg" alt=""/>
 	</div>
 </template>
 
@@ -15,10 +15,10 @@ export default {
 	methods: {
 		getData() {
 			return new Promise((resolve, reject) => {
-				if(true) {
+				if(1) {
 					resolve(1)
 				}else {
-					reject(0)
+					reject()
 				}
 			})
 		},
@@ -27,7 +27,7 @@ export default {
 				url: '/invest2/forum/article/getArticleList/1',
 				type: "GET",
 				success: (r) => {
-					console.log(r.resData);
+					console.log(r.resData)
 				}
 			})
 		},
@@ -36,14 +36,14 @@ export default {
 				url: '/v1/getNewUserDiscountTicketDetail?uid=&client_id=&token=&src=web',
 				type: "GET",
 				success: (r) => {
-					console.log(r.m);
+					console.log(r.m)
 				}
 			})
 		}
 	},
 	created() {
 		this.getData().then((data) => {
-			console.log(data);
+			console.log(data)
 		})
 	},
 	mounted() {
@@ -51,7 +51,7 @@ export default {
 		setTimeout(() => {
 			this.getDatas()
 		}, 500)
-		console.log(addFn(1, 2), 'oo');
+		console.log(addFn(1, 2), 'oo')
 	}
 }
 </script>
