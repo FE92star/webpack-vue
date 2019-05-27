@@ -15,7 +15,7 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 				'indent': 'off', //缩进
-				'no-tabs': 'off', //tab
+				'no-tabs': 'off', //禁用tab
 				"keyword-spacing": 'off', //关键字前后空格校验
 				"quotes": 'off', //字符串单双引号的校验
 				"prefer-promise-reject-errors": 'off', //promise中reject参数必须是Error对象的校验

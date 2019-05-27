@@ -13,7 +13,7 @@ module.exports = merge(common, {
 		open: true,
 		quiet: true,
 		overlay: { //编译错误直接展示在页面中
-			errors: false
+			errors: true
 		},
 		// openPage: 'mypage/', 用于打开对应的路由公共路径
 		allowedHosts: [ //白名单
