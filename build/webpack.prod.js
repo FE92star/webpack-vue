@@ -71,8 +71,8 @@ module.exports = merge(common, {
 		filename: 'js/[name].[chunkhash:8].js', //JS的输出
 		chunkFilename: 'js/[name].[chunkhash:8].js',
 		path: resolve('dist'),
-		publicPath:
-			process.env.NODE_ENV === 'production' ? `https://r.51gjj.com/webpublic/myvue/` : '' //生产环境公共路径为CDN基础目录，开发环境为根目录
+		publicPath: '/'
+			// process.env.NODE_ENV === 'production' ? `https://r.51gjj.com/webpublic/myvue/` : '' //生产环境公共路径为CDN基础目录，开发环境为根目录
 	},
 	// module: {
 	// 	rules: [
