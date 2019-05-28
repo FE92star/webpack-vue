@@ -11,3 +11,10 @@
 	10. 增加开发环境下的proxy接口代理服务配置
 
 # 项目用来构建自己的组件库
+
+```bash
+npm run build  //正常打包
+set pro=analyze&npm run build //启用打包分析
+npm run start/dev/serve //项目运行
+npm run lint //Eslint检测
+```

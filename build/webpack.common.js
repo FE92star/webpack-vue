@@ -1,9 +1,13 @@
 const path = require('path')
+const os = require('os') //node内置的OS模块
+// const HappyPack = require('happypack') //多进程并发解析代码,提高执行打包效率，实测此插件反而降低了打包效率
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const devMode = process.env.NODE_ENV !== 'production'
+// 根据系统的内核数量 指定线程池个数 也可以其他数量
+// const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
 
 function resolve(dir) {
 	return path.join(__dirname, '../', dir)
@@ -29,6 +33,13 @@ module.exports = {
 			}
 		}),
 		new VueLoaderPlugin(), //需要使用这个插件用来解析vue文件
+		require('autoprefixer')
+		// new HappyPack({
+		// 	id: 'babel',
+		// 	loaders: ['babel-loader?cacheDirectory'],
+		// 	threadPool: happyThreadPool,
+		// 	verbose: true
+		// })
 	],
 	resolve: {
 		extensions: ['.js', '.vue', '.json', '.ts'], //用于在引入这几种类型的文件时不需要加文件后缀名，webpack会自动解析
@@ -38,7 +49,11 @@ module.exports = {
 		},
 		modules: [resolve('src'), 'node_modules'] //配置快捷查找模块
 	},
+	externals: { //主要是用于vue或者其他库在以script标签形式引入的时候，不需要再把对应的库打包一次，同时支持各种模块化引入方式
+		// vue: 'vue'
+	},
 	module: {
+		noParse: (content) => /jquery|lodash/.test(content), //对不包含模块引入的库忽略对其进行loader的递归解析
 		rules: [
 			// eslint-loader
 			{
@@ -60,17 +75,19 @@ module.exports = {
 				use: [
 					devMode
 					? 'vue-style-loader'
-					: MiniCssExtractPlugin.loader, 'css-loader'
+					: MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader' //增加postcss-loader用于增加css浏览器前缀，对应的插件加载配置在package.json文件中，同时需要增加browserLists即可补全-moz-
 				]
 			},
 			{
 				test: /\.less$/,
-				loader: 'style-loader!css-loader!less-loader'
+				loader: 'style-loader!css-loader!less-loader!postcss-loader'
 			},
 			{
 				test: /\.js$/,
 				loader: 'babel-loader?cacheDirectory', //缓存loader执行结果 提升打包速度(打包时间减少400ms左右)
-				include: [resolve('src'), resolve('test')] //必须匹配对应选项
+				// loader: 'happypack/loader?id=babel',
+				include: [resolve('src'), resolve('test')], //必须匹配对应选项
+				exclude: /node_modules/
 			},
 			{ //匹配TS文件类型
 				test: /\.tsx?$/,

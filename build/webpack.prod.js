@@ -12,6 +12,14 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 // 基本参数
 const proEnv = process.env.NODE_ENV !== 'production'
+const pro = process.env.pro //环境变量
+
+let analyzerPlugin = pro === 'analyze'
+? new BundleAnalyzerPlugin() //启用打包分析——在执行npm run build时候默认启用分析
+: new MiniCssExtractPlugin({ //只在生产环境下做CSS的提取可以保证开发环境下的热重载效果，目前CSS分离未起效果，原因暂时不明
+			filename: 'css/[name].[contenthash:8].css',
+			chunkFilename: 'css/[name].[contenthash:8].css'
+		})
 
 function resolve(dir) {
 	return path.join(__dirname, '../', dir)
@@ -19,6 +27,7 @@ function resolve(dir) {
 
 module.exports = merge(common, {
 	mode: 'production',
+	// devtool: 'cheap-module-source-map', //打包之后会生成一个对应的map文件
 	optimization: { //webpack优化
   minimizer: [
 			new OptimizeCSSAssetsPlugin({}), //CSS压缩
@@ -26,6 +35,11 @@ module.exports = merge(common, {
 				cache: true,
 				parallel: true,
 				sourceMap: true,
+				terserOptions: {
+					compress: {
+						drop_console: true //生产环境禁用console输出
+					}
+				}
 				// chunkFilter: (chunk) => { //用于配置对chunk类型JS的压缩
 				// 	if(chunk.name === 'vendor') {
 				// 		return false
@@ -83,10 +97,6 @@ module.exports = merge(common, {
 			verbose: true,
 			dry: false
 		}),
-		new MiniCssExtractPlugin({ //只在生产环境下做CSS的提取可以保证开发环境下的热重载效果，目前CSS分离未起效果，原因暂时不明
-			filename: 'css/[name].[contenthash:8].css',
-			chunkFilename: 'css/[name].[contenthash:8].css'
-		}),
-		// new BundleAnalyzerPlugin() //启用打包分析——在执行npm run build时候默认启用分析
+		analyzerPlugin
 	],
 })

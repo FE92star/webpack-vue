@@ -64,5 +64,10 @@ export default {
 	height: 18px;
 	line-height: 18px;
 	background: blue;
+	display: flex;
+	transform: translateX(-50%);
+	position: absolute;
+	left: 50%;
+	top: 0;
 }
 </style>
