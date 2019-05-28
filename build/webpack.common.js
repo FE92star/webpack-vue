@@ -102,7 +102,7 @@ module.exports = {
 				options: {
 					limit: 1024 * 500, //图片最大体积不超过500kb
 					name: '[name].[hash:8].[ext]', //图片名称
-					outputPath: '/img' //输出目录
+					outputPath: 'img' //输出目录，对于生产环境下的静态资源不能加"/img"，否则资源地址不对
 				}
 			},
 			{ //字体loader
@@ -111,7 +111,7 @@ module.exports = {
 				options: {
 					limit: 1024 * 100,
 					name: '[name].[hash:8].[ext]',
-					outputPath: '/font'
+					outputPath: 'font'
 				}
 			}
 		]
