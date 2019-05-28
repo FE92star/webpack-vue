@@ -99,4 +99,20 @@ module.exports = merge(common, {
 		}),
 		analyzerPlugin
 	],
+	stats: { //用于清除冗杂的打包输出信息
+	 // copied from `'minimal'`
+	 all: false,
+		assets: true, //输出资源信息
+		builtAt: true, //构建时间戳
+		chunks: false, //允许较少的冗长输出
+		performance: true, // 当文件大小超过 `performance.maxAssetSize` 时显示性能提示
+	 modules: true, // 添加构建模块信息
+		timings: true, //总构建时长
+	 maxModules: 0,
+	 errors: true,
+	 warnings: true,
+	 // our additional options
+	 moduleTrace: true,
+	 errorDetails: true
+  }
 })
