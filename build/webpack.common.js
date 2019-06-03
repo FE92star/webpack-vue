@@ -45,7 +45,8 @@ module.exports = {
 		extensions: ['.js', '.vue', '.json', '.ts'], //用于在引入这几种类型的文件时不需要加文件后缀名，webpack会自动解析
 		alias: { //文件或者路径引用的别名
 			vue$: 'vue/dist/vue.esm.js',
-			'@': resolve('src')
+			'@': resolve('src'),
+			'@@': resolve('src/myComponents')
 		},
 		modules: [resolve('src'), 'node_modules'] //配置快捷查找模块
 	},

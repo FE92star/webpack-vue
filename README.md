@@ -23,3 +23,7 @@ set pro=analyze&npm run build //启用打包分析
 npm run start/dev/serve //项目运行
 npm run lint //Eslint检测
 ```
+
+## 项目目前存在并发现的问题有两个：
+	1. 在项目里面的静态资源引用的路径问题
+	2. less语法的支持

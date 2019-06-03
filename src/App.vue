@@ -1,7 +1,8 @@
 <template lang="html">
 	<div class="">
-		<p class="hello">{{str}}</p>
+		<!-- <p class="hello">{{str}}</p> -->
 		<img src="./assets/dog.jpg" alt=""/>
+		<bao-button type="success" circle></bao-button>
 	</div>
 </template>
 
@@ -58,6 +59,10 @@ export default {
 
 <style lang="less" scoped>
 @import url('./common.css');
+* {
+	margin: 0;
+	padding: 0;
+}
 .hello {
 	font-size: 16px;
 	color: red;
