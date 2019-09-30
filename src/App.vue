@@ -1,5 +1,5 @@
 <template lang="html">
-	<div class="">
+	<div class="app">
 		<p class="hello">{{str}}</p>
 		<img src="./assets/dog.jpg" alt=""/>
 	</div>
@@ -57,17 +57,36 @@ export default {
 </script>
 
 <style lang="less" scoped>
+* {
+	margin: 0;
+	padding: 0;
+}
+.app {
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		width: 100%;
+		height: auto;
+		overflow-x: hidden;
+		overflow-y: scroll;
+		-webkit-overflow-scrolling: touch;
+}
 @import url('./common.css');
 .hello {
-	font-size: 16px;
-	color: red;
-	height: 18px;
-	line-height: 18px;
-	background: blue;
-	display: flex;
-	transform: translateX(-50%);
-	position: absolute;
-	left: 50%;
-	top: 0;
+		font-size: 16px;
+		color: red;
+		height: 18px;
+		line-height: 18px;
+		background: blue;
+		display: flex;
+		transform: translateX(-50%);
+		position: absolute;
+		left: 50%;
+		top: 0;
+}
+img {
+	width: 100%;
 }
 </style>
