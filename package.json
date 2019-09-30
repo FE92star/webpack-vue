@@ -37,9 +37,11 @@
     "html-webpack-plugin": "^3.2.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
+    "loader-utils": "^1.2.3",
     "mini-css-extract-plugin": "^0.6.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
+    "schema-utils": "^2.4.1",
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.2.4",
     "ts-loader": "^6.0.1",
@@ -55,14 +57,14 @@
   "dependencies": {
     "vue": "^2.6.10"
   },
-		"postcss": {
-	    "plugins": {
-	      "autoprefixer": {}
-	    }
-	  },
-	  "browserslist": [
-	    "> 1%",
-	    "last 2 versions",
-	    "not ie <= 8"
-	  ]
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }

@@ -113,6 +113,10 @@ module.exports = {
 					name: '[name].[hash:8].[ext]',
 					outputPath: 'font'
 				}
+			},
+			{ //自定义loaders
+				test: /\.js$/,
+				loader: resolve('/loaders/loader.js')
 			}
 		]
 	}

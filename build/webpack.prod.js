@@ -9,6 +9,8 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const Webpack = require('webpack')
 // 打包分析
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+// 自定义插件
+const MyPlugin = require('../plugins/myPlugin.js')
 
 // 基本参数
 const proEnv = process.env.NODE_ENV !== 'production'
@@ -97,7 +99,8 @@ module.exports = merge(common, {
 			verbose: true,
 			dry: false
 		}),
-		analyzerPlugin
+		analyzerPlugin,
+		new MyPlugin()
 	],
 	stats: { //用于清除冗杂的打包输出信息
 	 // copied from `'minimal'`
