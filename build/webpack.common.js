@@ -1,6 +1,6 @@
 const path = require('path')
 const os = require('os') //node内置的OS模块
-// const HappyPack = require('happypack') //多进程并发解析代码,提高执行打包效率，实测此插件反而降低了打包效率
+// const HappyPack = require('happypack') //多进程并发解析代码,提高执行打包效率，实测此插件反而降低了打包效率，应该事loader的兼容性问题导致的
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -33,7 +33,7 @@ module.exports = {
 			}
 		}),
 		new VueLoaderPlugin(), //需要使用这个插件用来解析vue文件
-		require('autoprefixer')
+		require('autoprefixer'),
 		// new HappyPack({
 		// 	id: 'babel',
 		// 	loaders: ['babel-loader?cacheDirectory'],
@@ -50,7 +50,7 @@ module.exports = {
 		modules: [resolve('src'), 'node_modules'] //配置快捷查找模块
 	},
 	externals: { //主要是用于vue或者其他库在以script标签形式引入的时候，不需要再把对应的库打包一次，同时支持各种模块化引入方式
-		// vue: 'vue'
+		vue: 'vue'
 	},
 	module: {
 		noParse: (content) => /jquery|lodash/.test(content), //对不包含模块引入的库忽略对其进行loader的递归解析
@@ -114,10 +114,10 @@ module.exports = {
 					outputPath: 'font'
 				}
 			},
-			{ //自定义loaders
-				test: /\.js$/,
-				loader: resolve('/loaders/loader.js')
-			}
+			// { //自定义loaders
+			// 	test: /\.js$/,
+			// 	loader: resolve('/loaders/loader.js')
+			// }
 		]
 	}
 }

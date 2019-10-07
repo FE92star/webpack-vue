@@ -100,7 +100,7 @@ module.exports = merge(common, {
 			dry: false
 		}),
 		analyzerPlugin,
-		new MyPlugin()
+		// new MyPlugin()
 	],
 	stats: { //用于清除冗杂的打包输出信息
 	 // copied from `'minimal'`

@@ -1,12 +1,12 @@
 <template lang="html">
 	<div class="app">
 		<p class="hello">{{str}}</p>
-		<img src="./assets/dog.jpg" alt=""/>
+		<!-- <img src="./assets/dog.jpg" alt=""/> -->
 	</div>
 </template>
 
 <script>
-import addFn from './ts/common.ts'
+import addFn from '@/ts/common.ts'
 
 export default {
 	data: () => ({
@@ -15,7 +15,7 @@ export default {
 	methods: {
 		getData() {
 			return new Promise((resolve, reject) => {
-				if(1) {
+				if(true) {
 					resolve(1)
 				}else {
 					reject()
@@ -39,6 +39,18 @@ export default {
 					console.log(r.m)
 				}
 			})
+		},
+		// 两数之和算法
+		addTwoSum(nums, target) { // nums数字数组，target为两个目标数字之和
+			let obj = {}
+			for(let i = 0, len = nums.length; i < len; i++) {
+				let data = nums[i]
+				const otherNum = target - data
+				if(otherNum in obj) {
+					return [obj[otherNum], i]
+				}
+				obj[data] = i
+			}
 		}
 	},
 	created() {
