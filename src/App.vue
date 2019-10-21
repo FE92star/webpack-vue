@@ -64,6 +64,16 @@ export default {
 			this.getDatas()
 		}, 500)
 		console.log(addFn(1, 2), 'oo')
+		let newFn = fn.bind(obj, a, b, c)
+		// bind函数主要是用于改变this指向，传入第一个参数为目标对象，后面的参数为函数被调用时的参数
+		Function.prototype.bindMe = function(coontext) {
+			let self = this
+			let fArr = Array.prototype.slice.call(arguments, 1) // 获取从第二个参数到最后一个参数的集合
+			return function() {
+				let nArr = Arr.prototype.slice.call(arguments)
+				return self.apply(coontext, nArr.concat(fArr))
+			}
+		}
 	}
 }
 </script>

@@ -40,6 +40,7 @@
     "loader-utils": "^1.2.3",
     "mini-css-extract-plugin": "^0.6.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "os": "^0.1.1",
     "postcss-loader": "^3.0.0",
     "schema-utils": "^2.4.1",
     "style-loader": "^0.23.1",
@@ -53,7 +54,8 @@
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.4.1",
-    "webpack-merge": "^4.2.1"
+    "webpack-merge": "^4.2.1",
+    "webpack-uglify-parallel": "^0.1.4"
   },
   "dependencies": {
     "vue": "^2.6.10"
